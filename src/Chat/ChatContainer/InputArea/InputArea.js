@@ -4,8 +4,13 @@ import './InputArea.sass'
 
 
 export default (props) => (
-  <div className="inputArea">
-
-  </div>
+  <form>
+    <div className="inputArea">
+      <div className="inputAreaContainer">
+        <textarea id="input_message" name="input_text" placeholder="Type message!"></textarea>
+      </div>
+      <button type="submit" className="inputArea__button">Send</button>
+    </div>
+  </form>
 )
 

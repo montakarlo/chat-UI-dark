@@ -21,10 +21,16 @@ export default (props) => {
     return (
       <div className="messageItem_right messageItem_topBottom">
         <div className='messageItem' id = {props.id}>
-          {/* <i className="fas fa-heart"></i> */}
+          <div className="iconsContainer">
+            {/* <i className="fas fa-edit"></i> */}
+            <i className="fas fa-trash-alt"></i>
+
+            <i className="fas fa-heart"></i>
+          </div>
           <div className="messageItem__container_my">
             <p className="text">{props.text}</p>
             <p className="date_my">{props.date}</p>
+            <a className="edit" href="#">Edit</a>
           </div>
         </div>
       </div>

@@ -17,6 +17,9 @@
     align-items: center
     // margin-bottom: 6px
     margin-right: 7px
+    -webkit-box-shadow: 2px 2px 4px 3px rgba(0,0,0,0.51)
+    -moz-box-shadow: 2px 2px 4px 3pxrgba(0,0,0,0.51)
+    box-shadow: 2px 2px 4px 3px rgba(0,0,0,0.51)
     &_my
       padding: 1.4rem
       background-image: linear-gradient(225deg, #4d1a9e 0%, #9d5ece 100%);
@@ -28,12 +31,19 @@
       align-items: center
       // margin-bottom: 6px
       margin-left: 7px
+      -webkit-box-shadow: 2px 2px 4px 3px rgba(0,0,0,0.51)
+      -moz-box-shadow: 2px 2px 4px 3pxrgba(0,0,0,0.51)
+      box-shadow: 2px 2px 4px 3px rgba(0,0,0,0.51)
 .avatar
   width: 40px
   height: 40px
   border-radius: 50px
   margin-right: 10px
   margin-bottom: 3px
+  border: 1px solid #ffffff
+  // -webkit-box-shadow: 1.5px 1.5px 3px 1.5px rgba(0,0,0,0.51)
+  // -moz-box-shadow: 1.5px 1.5px 3px 1.5px rgba(0,0,0,0.51)
+  // box-shadow: 1.5px 1.5px 3px 1.5px  rgba(0,0,0,0.51)
 
 .text
   margin: 0 5px 3px 0
@@ -44,18 +54,31 @@
   right: 0
   bottom: 0
   margin: 0 7px 3px 0
-  font-size: 12px
+  font-size: 11px
   &_my
     position: absolute
     right: 0
     bottom: 0
     margin: 0 7px 3px 0
-    font-size: 12px
+    font-size: 11px
+
+.edit
+  position: absolute
+  right: 0
+  top: 0
+  margin: 3px 7px 0 0
+  font-size: 10px
+  &:visited
+    color: #ffffff
 
 .fas, .fa-heart
   margin-bottom: 3px
   font-size: 16px
-  color: #c5c5c5
+  color: #ffffff
+  opacity: 0.4
+
+.fa-trash-alt
+  margin: 10px 2px 10px 0
 
 .messageItem_left
   display: flex
@@ -72,3 +95,10 @@
     margin-top: 16px
   &:last-child
     margin-bottom: 8px
+
+.iconsContainer
+  height: 100%
+  display: flex
+  flex-direction: column
+  justify-content: center
+  align-items: flex-end

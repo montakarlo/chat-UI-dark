@@ -8,11 +8,11 @@ function Header () {
       {header => (
         <div className="header">
           <div className="header__leftSide">  
-            <p className="header__leftSide_chatName">{header().getHeaderInfo().chatName}</p>
-            <p className="header__leftSide_participants">{header().getHeaderInfo().participants} participants</p>
-            <p className="header__leftSide_messagesAmount">{header().getHeaderInfo().messagesAmount} messages</p>
+            <span className="header__leftSide_chatName">{header().getHeaderInfo().chatName}</span>
+            <span className="header__leftSide_participants">{header().getHeaderInfo().participants} participants</span>
+            <span className="header__leftSide_messagesAmount">{header().getHeaderInfo().messagesAmount} messages</span>
           </div>
-            <p className="lastMessageTime">Last message: {header().getHeaderInfo().lastMessageTime}</p>
+            <span className="lastMessageTime">Last message: {header().getHeaderInfo().lastMessageTime}</span>
         </div>
       )}
     </HeaderInfoContext.Consumer>

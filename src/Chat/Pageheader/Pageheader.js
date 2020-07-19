@@ -5,7 +5,7 @@ import './Pageheader.sass'
 
 export default () => (
     <header>
-      <p>Montakarlo_chat</p>
+      <span>Montakarlo_chat</span>
     </header>
 )
 

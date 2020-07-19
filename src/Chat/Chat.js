@@ -3,6 +3,8 @@ import './Chat.sass'
 import ChatContainer from './ChatContainer/ChatContainer'
 import Pageheader from './Pageheader/Pageheader'
 import Footer from './Footer/Footer'
+// import 'bootstrap/dist/css/bootstrap.min.css';
+import * as ReactBootStrap from 'react-bootstrap'
 
 export const HeaderInfoContext = React.createContext()
 
@@ -13,7 +15,8 @@ export class Chat extends Component {
     this.state = {
             chatName : 'My chat',
             myId: '4b003c20-1b8f-11e8-9629-c7eca82aa7bd',
-            messages : []}
+            messages : [],
+            loaded: false}
     }
   getHeaderInfo = () => {
     let chatName = this.state.chatName;
@@ -57,7 +60,7 @@ export class Chat extends Component {
     fetch('https://api.npoint.io/b919cb46edac4c74d0a8')
       .then(response => response.json())
       .then(messages => {
-        this.setState({ messages: messages });
+        this.setState({ messages: messages, loaded: true});
     });
   }
 
@@ -66,7 +69,7 @@ export class Chat extends Component {
       <div className = "container">
         <Pageheader />
         <HeaderInfoContext.Provider value = {this.fromContext}>
-          <ChatContainer />
+          {!this.state.loaded ? <ReactBootStrap.Spinner animation="border" variant="light"/> : <ChatContainer />}
         </HeaderInfoContext.Provider>
         <Footer />
       </div>
