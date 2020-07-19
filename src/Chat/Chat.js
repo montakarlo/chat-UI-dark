@@ -73,14 +73,27 @@ export class Chat extends Component {
   likeMessage = (id) => {
     let messages = this.state.messages
     let newMessagesArr = [...messages]
-    newMessagesArr.forEach(message => {
-      if (message.id == id){
-        message.isLiked = 'true'
+    messages.forEach(message => {
+      let index = newMessagesArr.indexOf(message)
+      if (id == message.id){
+        newMessagesArr[index].isLiked = !newMessagesArr[index].isLiked 
       }
     });
     this.setState({ messages: newMessagesArr});
-    // console.log(id);
   }
+
+  // editMessage = (id) => {
+  //   console.log(id)
+  //   let messages = this.state.messages
+  //   let newMessagesArr = [...messages]
+  //   messages.forEach(message => {
+  //     let index = newMessagesArr.indexOf(message)
+  //     if (id == message.id){
+  //       newMessagesArr[index].isLiked = !newMessagesArr[index].isLiked 
+  //     }
+  //   });
+  //   this.setState({ messages: newMessagesArr});
+  // }
 
   fromContext = () => {
     return {getHeaderInfo: this.getHeaderInfo, 

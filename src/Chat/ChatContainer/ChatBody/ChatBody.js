@@ -20,6 +20,7 @@ export default () => {
                 key = {index}
                 myId = {messages().getMyId()}
                 messageId = {messages().getHeaderInfo().messages[index].id}
+                isLiked = {message.isLiked}
                 /> 
               )
             })

@@ -16,7 +16,17 @@ export default (props) => {
                 <p className="text">{props.text}</p>
                 <p className="date">{props.date}</p>
               </div>
-              <i className="fas fa-heart"></i>
+              {!props.isLiked ?
+              <i className="fas fa-heart"
+                onClick={ () => {
+                  messages().likeMessage(props.messageId)
+                }}
+              ></i>:
+              <i className="fas fa-heart isLiked"
+              onClick={ () => {
+                messages().likeMessage(props.messageId)
+              }}
+            ></i>}
             </div>
           </div>
         )}
