@@ -6,7 +6,7 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 export default (props) => {
   if (props.id !== props.myId){
     return (
-      <div className="messageItem_left messageItem_topBottom">
+      <div className="messageItem_left messageItem_topBottom" id = {props.id}>
         <div className='messageItem'>
           <img src={props.src} alt="avatar" className="avatar"/>
           <div className="messageItem__container">
@@ -19,8 +19,8 @@ export default (props) => {
     )
   } else {
     return (
-      <div className="messageItem_right messageItem_topBottom">
-        <div className='messageItem' id = {props.id}>
+      <div className="messageItem_right messageItem_topBottom" id = {props.id}>
+        <div className='messageItem'>
           <div className="iconsContainer">
             {/* <i className="fas fa-edit"></i> */}
             <i className="fas fa-trash-alt"></i>

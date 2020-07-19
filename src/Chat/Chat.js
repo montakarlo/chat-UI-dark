@@ -51,18 +51,26 @@ export class Chat extends Component {
     return myId
   }
 
+  addMessage = (newMessage) => {
+    let allMessages = [...this.state.messages, newMessage]
+    this.setState({ messages: allMessages});
+    // console.log(newMessage)
+  }
 
   fromContext = () => {
-    return {getHeaderInfo: this.getHeaderInfo, getMessages: this.getMessages, getMyId: this.getMyId}
+    return {getHeaderInfo: this.getHeaderInfo, getMessages: this.getMessages, getMyId: this.getMyId, addMessage: this.addMessage}
   }
   
   componentDidMount = () => {
     fetch('https://api.npoint.io/b919cb46edac4c74d0a8')
       .then(response => response.json())
       .then(messages => {
+        messages.sort(function(a,b){ 
+          return - Date.parse(b.createdAt) + Date.parse(a.createdAt)})
         this.setState({ messages: messages, loaded: true});
     });
   }
+
 
   render(){
     return(
