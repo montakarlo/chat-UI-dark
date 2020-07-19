@@ -8,7 +8,7 @@ export class InputArea extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {text: '', createdAt: '', id: '', userId: '4b003c20-1b8f-11e8-9629-c7eca82aa7bd'}
+    this.state = {text: '', createdAt: '', id: '', userId: '9e243930-83c9-11e9-8e0c-8f1a686f4ce4'}
     this.onChangeMessage = this.onChangeMessage.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
   }
@@ -20,6 +20,11 @@ export class InputArea extends Component {
     let id = '_' + Math.random().toString(36).substr(2, 20);
     this.setState({text: event.target.value, createdAt: Date.now(), id: id});
     // console.log(event.target.value)
+  }
+
+  clearArea(){
+    // this.setState({text: ''});
+    document.getElementById('input_message').value = "";
   }
 
   render(){
@@ -36,9 +41,7 @@ export class InputArea extends Component {
                   value={this.state.message}
                   onChange={this.onChangeMessage}
                   placeholder="Type message!"
-                  // function={messages().addMessage}
                   >
-                  
                 </textarea>
               </div>
               <button
@@ -46,8 +49,8 @@ export class InputArea extends Component {
                 value="Submit"
                 className="inputArea__button"
                 onClick={ () => {
-                  messages().addMessage(this.state)
-                  
+                  messages().addMessage(this.state);
+                  this.clearArea();
                 }}
               >Send
               </button>

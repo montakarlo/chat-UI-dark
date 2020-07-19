@@ -13,12 +13,13 @@ export default () => {
             {messages().getMessages().map((message, index) => {
               return(
                 <MessageItem 
-                id = {message.userId}
+                userId = {message.userId}
                 text = {messages().getHeaderInfo().messages[index].text}
                 src = {messages().getHeaderInfo().messages[index].avatar}
                 date = {new Date(messages().getHeaderInfo().messages[index].createdAt).toString().slice(16,21)}
                 key = {index}
                 myId = {messages().getMyId()}
+                messageId = {messages().getHeaderInfo().messages[index].id}
                 /> 
               )
             })

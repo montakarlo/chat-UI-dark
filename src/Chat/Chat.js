@@ -14,7 +14,7 @@ export class Chat extends Component {
     super(props)
     this.state = {
             chatName : 'My chat',
-            myId: '4b003c20-1b8f-11e8-9629-c7eca82aa7bd',
+            myId: '9e243930-83c9-11e9-8e0c-8f1a686f4ce4',
             messages : [],
             loaded: false}
     }
@@ -57,8 +57,38 @@ export class Chat extends Component {
     // console.log(newMessage)
   }
 
+  deleteMessage = (id) => {
+    let messages = this.state.messages
+    let newMessagesArr = [...messages]
+    messages.forEach(message => {
+      if (message.id == id){
+        let index = newMessagesArr.indexOf(message)
+        newMessagesArr.splice(index,1)
+      }
+    });
+    this.setState({ messages: newMessagesArr});
+    // console.log(id);
+  }
+
+  likeMessage = (id) => {
+    let messages = this.state.messages
+    let newMessagesArr = [...messages]
+    newMessagesArr.forEach(message => {
+      if (message.id == id){
+        message.isLiked = 'true'
+      }
+    });
+    this.setState({ messages: newMessagesArr});
+    // console.log(id);
+  }
+
   fromContext = () => {
-    return {getHeaderInfo: this.getHeaderInfo, getMessages: this.getMessages, getMyId: this.getMyId, addMessage: this.addMessage}
+    return {getHeaderInfo: this.getHeaderInfo, 
+            getMessages: this.getMessages,
+            getMyId: this.getMyId,
+            addMessage: this.addMessage,
+            deleteMessage: this.deleteMessage,
+            likeMessage: this.likeMessage}
   }
   
   componentDidMount = () => {
