@@ -1,35 +1,37 @@
 import React from 'react';
 import './ChatBody.sass'
 import MessageItem from './MessageItem/MessageItem'
-import {HeaderInfoContext} from '../../../Chat/Chat'
+import {connect} from 'react-redux'
 
-
-export default () => {
+function ChatBody (props) {
+  // console.log(props.messages);
   return (
-      <HeaderInfoContext.Consumer>
-      {messages => (
-        <div className="chatBody">
-          <div className="chatBody__container" id="chatBody__container">
-            {messages().getMessages().map((message, index) => {
-              return(
-                <MessageItem 
-                userId = {message.userId}
-                text = {messages().getHeaderInfo().messages[index].text}
-                src = {messages().getHeaderInfo().messages[index].avatar}
-                date = {new Date(messages().getHeaderInfo().messages[index].createdAt).toString().slice(16,21)}
-                key = {index}
-                myId = {messages().getMyId()}
-                messageId = {messages().getHeaderInfo().messages[index].id}
-                isLiked = {message.isLiked}
-                /> 
-              )
-            })
-            }
-          </div>
-        </div>
-      )}
-    </HeaderInfoContext.Consumer>
+    <div className="chatBody">
+      <div className="chatBody__container" id="chatBody__container">
+        {props.messages.map((message, index) => {
+          return(
+            <MessageItem 
+            userId = {message.userId}
+            text = {message.text}
+            src = {message.avatar}
+            messageId = {message.id}
+            isLiked = {message.isLiked}
+            date = {new Date(message.createdAt).toString().slice(16,21)}
+            myId = {props.myId}
+            key = {index}
+            />
+          )
+        })
+        }
+      </div>
+    </div>
   )
 }
+function mapStateToProps(state) {
+  return {
+    messages : state.messages.messages,
+    myId: state.messages.myId
+  }
+}
 
-
+export default connect(mapStateToProps)(ChatBody)
