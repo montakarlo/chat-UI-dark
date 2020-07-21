@@ -11,6 +11,8 @@ function ChatBody (props) {
         {props.messages.map((message, index) => {
           return(
             <MessageItem 
+            allMessages = {props.messages}
+            lastMessageId = {props.lastMessageId}
             userId = {message.userId}
             text = {message.text}
             src = {message.avatar}
@@ -28,9 +30,12 @@ function ChatBody (props) {
   )
 }
 function mapStateToProps(state) {
+  let lastMessage = state.messages.messages
+  let lastMessageId = lastMessage[lastMessage.length -1].id;
   return {
     messages : state.messages.messages,
-    myId: state.messages.myId
+    myId: state.messages.myId,
+    lastMessageId: lastMessageId
   }
 }
 

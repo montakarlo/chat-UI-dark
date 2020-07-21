@@ -5,27 +5,59 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 import {deleteMessage, likeMessage, editMessage} from '../../../../redux/actions/actions'
 import {connect} from 'react-redux'
 
-function MessageItem (props) {
 // export default (props) => {
-  console.log(props.myId+' and '+props.userId);
-  if (props.userId !== props.myId){
+class MessageItem extends React.Component {
+  constructor(props) {
+    super(props)
+  }
+  // componentDidMount = () => {
+  //   let allMessages = this.props.allMessages
+  //   let allMyMessages = []
+  //   allMessages.forEach(message => {
+  //     if (message.userId == this.props.myId){
+  //       allMyMessages.push(message)
+  //     }
+  //   });
+  //   if (this.props.messageId == allMyMessages[allMyMessages.length -1].id){
+  //     let editToListen = document.getElementById(this.props.messageId+'_edit')
+  //     editToListen.addEventListener("keydown", listenerCall())
+  //     function listenerCall() {
+  //       let pressHandler =  function keyPressFunction(event) {
+  //         if (event.keyCode == 38){
+  //           window.removeEventListener('keydown', pressHandler);
+  //           editToListen.click()
+  //           window.addEventListener('keyup', pressHandler);
+  //         }
+  //       }
+  //       return pressHandler
+  //     }
+  //   }
+  // }
+  componentDidMount = () => {
+    var objDiv = document.getElementById("chatBody__container");
+    objDiv.scrollTop = objDiv.scrollHeight;
+  }
+
+  render(){
+    console.log("render");
+  if (this.props.userId !== this.props.myId){
     return (
-      <div className="messageItem_left messageItem_topBottom" id = {props.messageId}>
+      <div className="messageItem_left messageItem_topBottom" id = {this.props.messageId}>
         <div className='messageItem'>
-          <img src={props.src} alt="avatar" className="avatar"/>
+          <img src={this.props.src} alt="avatar" className="avatar"/>
           <div className="messageItem__container">
-            <p className="text">{props.text}</p>
-            <p className="date">{props.date}</p>
+            <p className="text">{this.props.text}</p>
+            <p className="date">{this.props.date}</p>
           </div>
-          {!props.isLiked ?
+          {!this.props.isLiked ?
           <i className="fas fa-heart"
             onClick={ () => {
-              props.onLike(props.messageId)
+              this.props.onLike(this.props.messageId)
             }}
           ></i>:
           <i className="fas fa-heart isLiked"
           onClick={ () => {
-            props.onLike(props.messageId)
+            this.props.onLike(this.props.messageId)
           }}
         ></i>}
         </div>
@@ -33,27 +65,27 @@ function MessageItem (props) {
     )
   } else {
     return (
-      <div className="messageItem_right messageItem_topBottom" id = {props.messageId}>
+      <div className="messageItem_right messageItem_topBottom" id = {this.props.messageId}>
       <div className='messageItem'>
         <div className="iconsContainer">
           {/* <i className="fas fa-edit"></i> */}
           <i className="fas fa-trash-alt"
             onClick={ () => {
               if (window.confirm("Do you really want to delete this message?")) { 
-                props.onDelete(props.messageId)
+                this.props.onDelete(this.props.messageId)
               }
             }}
           ></i>
           <i className="fas fa-heart"></i>
         </div>
         <div className="messageItem__container_my">
-          <p className="text">{props.text}</p>
-          <p className="date_my">{props.date}</p>
-          <a className="edit" href="#"
+          <p className="text">{this.props.text}</p>
+          <p className="date_my">{this.props.date}</p>
+          <a className="edit" href="#" id={this.props.messageId+'_edit'}
           onClick={ () => {
-            let enteredText = window.prompt("Edit your message", props.text)
+            let enteredText = window.prompt("Edit your message", this.props.text)
             if (enteredText){
-              props.onEdit(props.messageId, enteredText);
+              this.props.onEdit(this.props.messageId, enteredText);
             }
           }}
           >Edit</a>
@@ -62,6 +94,7 @@ function MessageItem (props) {
     </div>
     )
   }
+}
 }
 function mapDispatchToProps(dispatch) {
   return {

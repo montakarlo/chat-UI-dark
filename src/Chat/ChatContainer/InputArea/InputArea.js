@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import './InputArea.sass'
 import {addMessage} from '../../../redux/actions/actions'
 import {connect} from 'react-redux'
+import $ from 'jquery'
 
 export class InputArea extends Component {
 
@@ -22,7 +23,18 @@ export class InputArea extends Component {
   clearArea(){
     document.getElementById('input_message').value = "";
   }
+  componentDidMount = () => {
 
+    const onKeyUp = ev => {
+      const enterKeyCode = 13;
+      if (ev.keyCode === enterKeyCode) {
+        submitButton.click();
+      }
+    };
+    const submitButton = document.getElementById("submitButton");
+    window.addEventListener("keydown", onKeyUp);
+    
+  }
   render(){
     console.log(this.props.onAdd);
     return (
@@ -40,11 +52,14 @@ export class InputArea extends Component {
             </textarea>
           </div>
           <button
+            id = "submitButton"
             type="submit"
             value="Submit"
             className="inputArea__button"
             onClick={ () => {
-              this.props.onAdd(this.newMessageObj);
+              let toSend = Object.assign({},this.newMessageObj)
+              this.newMessageObj.text = ''
+              this.props.onAdd(toSend);
               this.clearArea();
             }}
           >Send

@@ -11,12 +11,16 @@ export default function messages (state = initialState, action) {
   switch(action.type) {
     case ADD_MESSAGE:
       let newMessageObj = action.payload
-      let allMessages = [...state.messages, newMessageObj]
-      console.log(action.payload);
-      return {
-        myId: state.myId,
-        messages: allMessages,
+      let allMessages = []
+      if (newMessageObj.text && newMessageObj.text != '\n') {
+        allMessages.push(...state.messages, newMessageObj)
+        console.log(action.payload);
+        return {
+          myId: state.myId,
+          messages: allMessages,
+        }
       }
+      
     
     case DELETE_MESSAGE:
       let delId = action.payload
