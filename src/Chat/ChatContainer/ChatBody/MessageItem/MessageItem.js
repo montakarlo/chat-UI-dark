@@ -2,7 +2,7 @@ import React from 'react';
 import './MessageItem.sass'
 import '@fortawesome/fontawesome-free/css/all.min.css';
 // import { MessageItem } from 'semantic-ui-react';
-import {deleteMessage, likeMessage} from '../../../../redux/actions/actions'
+import {deleteMessage, likeMessage, editMessage} from '../../../../redux/actions/actions'
 import {connect} from 'react-redux'
 
 function MessageItem (props) {
@@ -49,7 +49,14 @@ function MessageItem (props) {
         <div className="messageItem__container_my">
           <p className="text">{props.text}</p>
           <p className="date_my">{props.date}</p>
-          <a className="edit" href="#">Edit</a>
+          <a className="edit" href="#"
+          onClick={ () => {
+            let enteredText = window.prompt("Edit your message", props.text)
+            if (enteredText){
+              props.onEdit(props.messageId, enteredText);
+            }
+          }}
+          >Edit</a>
         </div>
       </div>
     </div>
@@ -60,6 +67,7 @@ function mapDispatchToProps(dispatch) {
   return {
     onDelete: (id) => dispatch(deleteMessage(id)),
     onLike: (id) => dispatch(likeMessage(id)),
+    onEdit: (id, text) => dispatch(editMessage(id, text))
   }
 }
 

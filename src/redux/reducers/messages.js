@@ -1,4 +1,4 @@
-import {ADD_MESSAGE, DELETE_MESSAGE, LIKE_MESSAGE, TAKE_ALL_MESSAGES} from '../actions/actionTypes';
+import {ADD_MESSAGE, DELETE_MESSAGE, LIKE_MESSAGE, TAKE_ALL_MESSAGES, EDIT_MESSAGE} from '../actions/actionTypes';
 import {data} from '../../messages'
 const initialState = {
   messages: data,
@@ -51,6 +51,21 @@ export default function messages (state = initialState, action) {
           myId: state.myId,
           messages: data,
           loaded: true,
+        }
+      case EDIT_MESSAGE:
+        let idMes = action.payload.id
+        let textMes = action.payload.text
+        let messagesToEdit = state.messages
+        let newMessagesToEdit = [...messagesToEdit]
+        newMessagesToEdit.forEach(message => {
+          let index = newMessagesToEdit.indexOf(message)
+          if (idMes == message.id){
+            newMessagesToEdit[index].text = textMes
+          }
+        });
+        return {
+          myId: state.myId,
+          messages: newMessagesToEdit,
         }
     default:
       return state

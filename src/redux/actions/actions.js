@@ -2,7 +2,8 @@ import {FETCH_MESSAGES,
         ADD_MESSAGE,
         DELETE_MESSAGE,
         LIKE_MESSAGE,
-        TAKE_ALL_MESSAGES} from './actionTypes'
+        TAKE_ALL_MESSAGES,
+        EDIT_MESSAGE} from './actionTypes'
 
 export function fetchedToStore(link) {
   return (dispatch) => {
@@ -41,5 +42,11 @@ export function likeMessage(id) {
 export function takeAllMessages(){
   return {
     type: TAKE_ALL_MESSAGES
+  }
+
+}export function editMessage(id, text){
+  return {
+    type: EDIT_MESSAGE,
+    payload: {id, text}
   }
 }
