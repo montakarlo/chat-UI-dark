@@ -4,7 +4,6 @@ import MessageItem from './MessageItem/MessageItem'
 import {connect} from 'react-redux'
 
 function ChatBody (props) {
-  // console.log(props.messages);
   return (
     <div className="chatBody">
       <div className="chatBody__container" id="chatBody__container">

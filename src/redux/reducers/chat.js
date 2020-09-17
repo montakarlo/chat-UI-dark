@@ -4,7 +4,6 @@ import messages from './messages';
 const initialState = {
   chatName : 'My chat',
   loaded: false,
-  // messages: []
 }
 
 

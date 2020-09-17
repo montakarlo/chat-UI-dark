@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import './InputArea.sass'
 import {addMessage} from '../../../redux/actions/actions'
 import {connect} from 'react-redux'
-import $ from 'jquery'
 
 export class InputArea extends Component {
 
@@ -45,7 +44,6 @@ export class InputArea extends Component {
               type="text"
               id="input_message"
               name="input_text"
-              // value={this.state.message}
               onChange={this.onChangeMessage}
               placeholder="Type message!"
               >
@@ -69,14 +67,6 @@ export class InputArea extends Component {
     )
   }
 }
-
-// function mapStateToProps(state) {
-//   return {
-//     newMessageObj: {text: '', createdAt: '', id: '', userId: '9e243930-83c9-11e9-8e0c-8f1a686f4ce4'},
-//     onChangeMessage: this.onChangeMessage.bind(this),
-//     onSubmit: this.onSubmit.bind(this)
-//   }
-// }
 
 function mapDispatchToProps(dispatch) {
   return {

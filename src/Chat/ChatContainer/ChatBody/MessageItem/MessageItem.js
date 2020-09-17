@@ -1,38 +1,13 @@
 import React from 'react';
 import './MessageItem.sass'
 import '@fortawesome/fontawesome-free/css/all.min.css';
-// import { MessageItem } from 'semantic-ui-react';
 import {deleteMessage, likeMessage, editMessage} from '../../../../redux/actions/actions'
 import {connect} from 'react-redux'
 
-// export default (props) => {
 class MessageItem extends React.Component {
   constructor(props) {
     super(props)
   }
-  // componentDidMount = () => {
-  //   let allMessages = this.props.allMessages
-  //   let allMyMessages = []
-  //   allMessages.forEach(message => {
-  //     if (message.userId == this.props.myId){
-  //       allMyMessages.push(message)
-  //     }
-  //   });
-  //   if (this.props.messageId == allMyMessages[allMyMessages.length -1].id){
-  //     let editToListen = document.getElementById(this.props.messageId+'_edit')
-  //     editToListen.addEventListener("keydown", listenerCall())
-  //     function listenerCall() {
-  //       let pressHandler =  function keyPressFunction(event) {
-  //         if (event.keyCode == 38){
-  //           window.removeEventListener('keydown', pressHandler);
-  //           editToListen.click()
-  //           window.addEventListener('keyup', pressHandler);
-  //         }
-  //       }
-  //       return pressHandler
-  //     }
-  //   }
-  // }
   componentDidMount = () => {
     var objDiv = document.getElementById("chatBody__container");
     objDiv.scrollTop = objDiv.scrollHeight;
